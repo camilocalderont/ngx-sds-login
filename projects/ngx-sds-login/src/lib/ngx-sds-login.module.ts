@@ -12,24 +12,7 @@ import { MSALFactory, MsalSdsConfigService } from './services';
     NgxSdsLoginComponent
   ],
   imports: [
-    CommonModule,
-    MsalModule.forRoot(
-      { provide: PublicClientApplication, useFactory: MSALFactory, deps: [MsalSdsConfigService] }, 
-      {
-        interactionType:  InteractionType.Popup,
-        authRequest: {
-          scopes: [`https://saludcapitalb2c.onmicrosoft.com/guid/rol`] 
-        }
-      },
-      {
-        interactionType:  InteractionType.Popup,
-        protectedResourceMap: new Map(
-          [
-            ['https://graph.microsoft.com/v1.0/me', ['rol']]
-          ]
-        ) 
-      } 
-    ),    
+    CommonModule,       
   ],
   providers: [
     MsalSdsConfigService
@@ -39,5 +22,4 @@ import { MSALFactory, MsalSdsConfigService } from './services';
   ]
 })
 export class NgxSdsLoginModule { 
-  constructor(private msalSdsConfigService: MsalSdsConfigService) {}
 }
