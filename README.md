@@ -1,6 +1,5 @@
 # Librería que encapsula la lógica de inicio de sesión, validación y autorización de usuarios
 
-
 ## Dependencias
     "@ngrx/effects": "^15.1.0",
     "@ngrx/store": "^15.1.0",
@@ -10,13 +9,14 @@
 ## Instalación
 Ejecuta `npm i ngx-sds-login`
 
-En el archivo principal:
+En el archivo principal html:
 
+```html
 <ngx-sds-login>
   <div appContent>
     <!-- Tu contenido personalizado  de inicio va aquí -->
     
   </div>
    <!-- Tu imagen de inicio va aquí -->
-  <img appLogo src="assets/imgs/logo.png" alt="Logo">
+  <img appLogo src="RUTA_A_TU_LOGO.png" alt="Logo">
 </ngx-sds-login>
