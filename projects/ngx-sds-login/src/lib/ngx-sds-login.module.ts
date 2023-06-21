@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgxSdsLoginComponent } from './ngx-sds-login.component';
 import { CommonModule } from '@angular/common';
-import { MsalModule } from '@azure/msal-angular';
-import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
-import { MSALFactory, MsalSdsConfigService } from './services';
 
 
 
@@ -13,9 +10,6 @@ import { MSALFactory, MsalSdsConfigService } from './services';
   ],
   imports: [
     CommonModule,       
-  ],
-  providers: [
-    MsalSdsConfigService
   ],
   exports: [
     NgxSdsLoginComponent
