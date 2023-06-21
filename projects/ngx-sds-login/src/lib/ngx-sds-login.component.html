@@ -1,0 +1,13 @@
+<div *ngIf="isUserLoggedIn">
+  <ng-content select="[appContent]"></ng-content>
+</div>
+<div class="login-container" *ngIf="!isUserLoggedIn">
+  <div class="login-content">
+    <div class="login-image-container">      
+      <ng-content select="[appLogo]"></ng-content>
+    </div>
+    <div class="login-button-container">
+      <button class="btn btn-primary btn-sm" type="button" (click)="login()">Login</button>
+    </div>
+  </div>
+</div>
