@@ -28,9 +28,26 @@
   }
   
   .login-button-container button {
-    width: 75%;
+    text-transform: uppercase;
+    padding: 1rem 1rem;
+    border-color: #185564;
+    border: 2px solid #185564;
+    color: #185564;
+    border-radius: 1.5rem;
+    font-weight: bold;
+    font-size: 100%;
+    align-items: center;
+    line-height: 0px;
+    margin-bottom: 8%;
+    width: 100%;
   }
-  
+
+  .login-button-container button:hover{
+    cursor: pointer;
+    transition-duration: 0.3s;
+    color: white;
+    background-color:#185564;
+  }
   /* Mobile Portrait */
   @media (orientation: portrait) and (max-width: 600px) {
     .login-content {
