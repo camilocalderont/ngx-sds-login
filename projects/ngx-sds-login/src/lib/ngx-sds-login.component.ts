@@ -29,9 +29,10 @@ export class NgxSdsLoginComponent {
     private authService: MsalService,
     public azureAdService: AzureAdService,
     private azureUtils: AzureUtilsService,
-    private store: Store<AppState>,
+    @Inject(Store) private store: Store<AppState>,
     @Inject(URL_REDIRECT_AZURE) private postLogoutUrl: string
   ) {
+    // this._destroying$ = this.store.select(state => state.user)
   }
 
   ngOnInit(): void {
