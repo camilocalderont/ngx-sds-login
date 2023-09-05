@@ -25,6 +25,11 @@ export enum EstadoUsuario {
     Inactivo = 2,
 }
 
+export interface RolLogin{
+    id: number;
+    vcCodigoInterno: string;
+}
+
 export interface UserLogin {
     id: number;
     rolId: number;
@@ -46,7 +51,7 @@ export interface UserLogin {
     dtFechaActualizacion: number;
     dtFechaAnulacion: number;
     unidadPrestacionServiciosId: number;
-    roles: string[];
+    roles: RolLogin[];
 }
 
 export const UserLoginEmptyState: UserLogin = {
