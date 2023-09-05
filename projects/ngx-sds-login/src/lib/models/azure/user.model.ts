@@ -46,6 +46,7 @@ export interface UserLogin {
     dtFechaActualizacion: number;
     dtFechaAnulacion: number;
     unidadPrestacionServiciosId: number;
+    roles: string[];
 }
 
 export const UserLoginEmptyState: UserLogin = {
@@ -69,6 +70,7 @@ export const UserLoginEmptyState: UserLogin = {
     dtFechaAnulacion: 0,
     unidadPrestacionServiciosId: 0,
     VcIdpAzure: '',
+    roles: [],
 };
 
 export interface Menu{
