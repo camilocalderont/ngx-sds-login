@@ -46,14 +46,18 @@ export class NgxSdsLoginComponent {
         this.createAzureConnection();
       });
 
+    this.store.select('user').subscribe((user: UserLogin) => {
+      localStorage.setItem('user', JSON.stringify(user));
+    });
+
   }
-  
+
   ngOnDestroy(): void {
     this._destroying$.next(undefined);
     this._destroying$.complete();
   }
 
-  
+
   createAzureConnection(){
     this.isUserLoggedIn = this.authService.instance.getAllAccounts().length > 0;
         if (this.isUserLoggedIn) {
@@ -63,7 +67,7 @@ export class NgxSdsLoginComponent {
             next:(resp: any) => {
               //console.log(resp.data);
               this.verificarEstadoUsuario(resp.data as UserLogin);
-            }, 
+            },
             error: (error: any) => {
               const responseError = error.error as any;
               Swal.fire({
@@ -83,8 +87,8 @@ export class NgxSdsLoginComponent {
                   this.verificarEstadoUsuario(responseError.data as UserLogin);
                 }else{
                   this.logout();
-                }              
-              });               
+                }
+              });
             }
           });
         }
@@ -116,21 +120,24 @@ export class NgxSdsLoginComponent {
         this.logout();
       });
     }else{
-      this.store.dispatch(UserActions.createUser({ payload: user as UserLogin }));
-      this.getMenuAndUpdateAuthorizationStatus(user.id);      
+      const storedUser = localStorage.getItem('user');
+      if (!storedUser) {
+        this.store.dispatch(UserActions.createUser({ payload: user as UserLogin }));
+      }
+      this.getMenuAndUpdateAuthorizationStatus(user.id);
     }
-    
+
   }
 
   getMenuAndUpdateAuthorizationStatus(userId: number) {
     this.azureAdService.getMenuUser(userId).pipe(
       tap((resp: any) => {
         const menuArray: Menu[] = resp.data as Menu[];
-        const menuGuard: string[] = this.azureUtils.menuGuardAdapter(menuArray);   
+        const menuGuard: string[] = this.azureUtils.menuGuardAdapter(menuArray);
         this.store.dispatch(MenuActions.createMenu({ payload: menuArray as Menu[] }));
         //validar si la elimino
         this.azureAdService.updateAuthorizationStatus(menuGuard.length > 0);
       })
     ).subscribe();
-  }    
+  }
 }
