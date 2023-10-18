@@ -46,10 +46,6 @@ export class NgxSdsLoginComponent {
         this.createAzureConnection();
       });
 
-    this.store.select('user').subscribe((user: UserLogin) => {
-      localStorage.setItem('user', JSON.stringify(user));
-    });
-
   }
 
   ngOnDestroy(): void {
@@ -106,6 +102,7 @@ export class NgxSdsLoginComponent {
   }
 
   logout() {
+    localStorage.removeItem('user');
     this.authService.logoutRedirect({ postLogoutRedirectUri: this.postLogoutUrl });
   }
 
@@ -120,9 +117,13 @@ export class NgxSdsLoginComponent {
         this.logout();
       });
     }else{
+
       const storedUser = localStorage.getItem('user');
       if (!storedUser) {
         this.store.dispatch(UserActions.createUser({ payload: user as UserLogin }));
+      }else{
+        let storeUser = JSON.parse(storedUser);
+        this.store.dispatch(UserActions.modifyUser({ payload: storeUser as UserLogin }));
       }
       this.getMenuAndUpdateAuthorizationStatus(user.id);
     }

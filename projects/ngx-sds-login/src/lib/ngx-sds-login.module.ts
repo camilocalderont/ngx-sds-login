@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from './state/user/user.reducer';
 import { menuReducer } from './state/menu/menu.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './state/user/user.effects';
 const rootReducer = {
   user: userReducer,
   menu: menuReducer
@@ -15,7 +17,8 @@ const rootReducer = {
   ],
   imports: [
     CommonModule,
-    StoreModule.forRoot(rootReducer)
+    StoreModule.forRoot(rootReducer),
+    EffectsModule.forFeature([UserEffects])
   ],
   exports: [
     NgxSdsLoginComponent
